@@ -4,7 +4,6 @@ import waffle from '../assets/Waffle.svg';
 const Home = () => {
   return (
     <>
-      {' '}
       <div className="h-[232px]"></div>
       <div className="w-full flex flex-col items-center">
         <div className="flex flex-col gap-4 items-center text-[21.353px] font-black font-pret">
