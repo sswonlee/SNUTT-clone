@@ -1,5 +1,6 @@
 import './reset.css';
 import './App.css';
+import 'pretendard/dist/web/static/pretendard.css';
 
 import AppBar from './components/AppBar';
 import Home from './components/Home';
