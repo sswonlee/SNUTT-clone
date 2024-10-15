@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import left from '../assets/Left.png';
 import type { Screen } from '../types';
 
@@ -34,14 +35,18 @@ const Login = ({ setScreen }: LoginProp) => {
           className="text-black border-b-[1px] py-2 focus:outline-none"
           placeholder="아이디를 입력하세요"
           value={id}
-          onChange={(e) => setId(e.target.value)}
+          onChange={(e) => {
+            setId(e.target.value);
+          }}
         />
         비밀번호
         <input
           className="text-black border-b-[1px] py-2 focus:outline-none"
           placeholder="비밀번호를 입력하세요"
           value={pwd}
-          onChange={(e) => setPwd(e.target.value)}
+          onChange={(e) => {
+            setPwd(e.target.value);
+          }}
         />
         <div className="flex text-[13px] gap-2 items-center font-pret underline">
           <button>아이디 찾기</button>
