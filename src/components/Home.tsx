@@ -1,9 +1,14 @@
 import google from '../assets/Google.png';
 import waffle from '../assets/Waffle.svg';
+import type { Screen } from '../types';
 
-const Home = () => {
+type HomeProp = {
+  setScreen: (arg: Screen) => void;
+};
+
+const Home = ({ setScreen }: HomeProp) => {
   return (
-    <>
+    <div className="flex flex-col">
       <div className="h-[232px]"></div>
       <div className="w-full flex flex-col items-center">
         <div className="flex flex-col gap-4 items-center text-[21.353px] font-black font-pret">
@@ -12,11 +17,16 @@ const Home = () => {
         </div>
         <div className="h-[136px]"></div>
         <div className="px-8 w-full flex flex-col items-center">
-          <button className="w-full p-3 text-sm rounded-md bg-orange text-white text-center font-semibold font-pret hover:bg-orangeHover">
+          <button
+            onClick={() => {
+              setScreen('login');
+            }}
+            className="w-full p-3 text-[14px] rounded-md bg-orange text-white text-center font-semibold font-pret hover:bg-orangeHover"
+          >
             로그인
           </button>
           <div className="h-3.5"></div>
-          <button className="text-sm font-semibold font-pret hover:opacity-60">
+          <button className="text-[14px] font-semibold font-pret hover:opacity-60">
             회원가입
           </button>
         </div>
@@ -24,7 +34,7 @@ const Home = () => {
         <div className="w-full px-3 flex flex-col items-center">
           <div className="w-full self-stretch gap-2.5 flex justify-center items-center">
             <div className="w-[100px] h-[0.75px] bg-gray"></div>
-            <div className="text-sm font-medium text-gray font-pret">
+            <div className="text-[14px] font-medium text-gray font-pret">
               SNS 계정으로 계속하기
             </div>
             <div className="w-[100px] h-[0.75px] bg-gray"></div>
@@ -40,7 +50,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
