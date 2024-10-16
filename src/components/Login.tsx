@@ -11,6 +11,7 @@ const Login = ({ setScreen }: LoginProp) => {
   const [id, setId] = useState('');
   const [pwd, setPwd] = useState('');
   const logInLabel = useRef<HTMLDivElement>(null);
+  const button = useRef<HTMLButtonElement>(null);
 
   const check = () => {
     fetch(
@@ -42,7 +43,7 @@ const Login = ({ setScreen }: LoginProp) => {
                 ext: object;
               },
         ) => {
-          if (json.message === 'ok') {
+          if (json.message === 'ok' && 'token' in json) {
             const date = new Date();
             date.setTime(date.getTime() + 5 * 24 * 60 * 60 * 1000);
             document.cookie =
@@ -52,12 +53,24 @@ const Login = ({ setScreen }: LoginProp) => {
               date.toUTCString() +
               ';path=/';
             setScreen('nickname');
-          } else if (json.errcode === 8196) {
+          } else if (
+            'errcode' in json &&
+            json.errcode === 8196 &&
+            logInLabel.current !== null &&
+            button.current !== null
+          ) {
             logInLabel.current.textContent = '계정이 존재하지 않습니다.';
             logInLabel.current.classList.add('bg-red-500');
-          } else if (json.errcode === 8197) {
+            button.current.textContent = '로그인';
+          } else if (
+            'errcode' in json &&
+            json.errcode === 8197 &&
+            logInLabel.current !== null &&
+            button.current !== null
+          ) {
             logInLabel.current.textContent = '비밀번호를 확인해보세요.';
             logInLabel.current.classList.add('bg-red-500');
+            button.current.textContent = '로그인';
           }
         },
       )
@@ -156,9 +169,13 @@ const Login = ({ setScreen }: LoginProp) => {
         </div>
         <div className="h-6"></div>
         <button
+          ref={button}
           onClick={() => {
             // setScreen('nickname');
             check();
+            if (button.current !== null) {
+              button.current.textContent = 'loading';
+            }
           }}
           disabled={id === '' || pwd === '' ? true : false}
           className="flex items-center justify-center text-[16px] bg-orange hover:bg-orangeHover disabled:bg-gray p-3 text-white bottom-0 rounded-md "

@@ -8,33 +8,35 @@ const Nickname = () => {
     tag: '',
   });
   useEffect(() => {
-    const value = document.cookie.match(
-      '(^|;) ?' + 'x-access-token' + '=([^;]*)(;|$)',
-    );
-    let token;
-    if (value !== null) {
-      token = value[2];
-    }
-    fetch(
-      'https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/users/me',
-      {
-        method: 'GET',
-        headers: {
-          'x-access-token': token,
+    if (nickname.nickname === '') {
+      const value = document.cookie.match(
+        '(^|;) ?' + 'x-access-token' + '=([^;]*)(;|$)',
+      );
+      let token = '';
+      if (value !== null && value[2] !== undefined) {
+        token = value[2];
+      }
+      fetch(
+        'https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/users/me',
+        {
+          method: 'GET',
+          headers: {
+            'x-access-token': token,
+          },
         },
-      },
-    )
-      .then((response) => response.json())
-      .then((json: UserInfo) => {
-        setNickname({
-          ...nickname,
-          nickname: json.nickname.nickname,
-          tag: json.nickname.tag,
+      )
+        .then((response) => response.json())
+        .then((json: UserInfo) => {
+          setNickname({
+            ...nickname,
+            nickname: json.nickname.nickname,
+            tag: json.nickname.tag,
+          });
+        })
+        .catch((err: unknown) => {
+          window.alert(err);
         });
-      })
-      .catch((err: unknown) => {
-        window.alert(err);
-      });
+    }
   }, [nickname]);
 
   return (
