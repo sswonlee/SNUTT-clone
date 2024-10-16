@@ -10,7 +10,7 @@ export default {
         gray: '#c4c4c4',
       },
       fontFamily: {
-        pret: ['Pretendard'],
+        sans: ['Pretendard'],
       },
     },
   },
