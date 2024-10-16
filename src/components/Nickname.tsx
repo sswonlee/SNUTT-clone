@@ -41,8 +41,12 @@ const Nickname = () => {
 
   return (
     <div className="h-full w-full flex flex-col justify-center items-center">
-      <p className="font-black text-xl">{nickname.nickname}🔥</p>
-      <p className="font-semibold text-zinc-500">#{nickname.tag}</p>
+      <p className="font-black text-xl">
+        {nickname.nickname !== '' ? nickname.nickname + '🔥' : 'loading..'}
+      </p>
+      <p className="font-semibold text-zinc-500">
+        {nickname.tag !== '' ? '#' + nickname.tag : ''}
+      </p>
     </div>
   );
 };
