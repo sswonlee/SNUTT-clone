@@ -11,7 +11,7 @@ const Home = ({ setScreen }: HomeProp) => {
     <div className="flex flex-col">
       <div className="h-[232px]"></div>
       <div className="w-full flex flex-col items-center">
-        <div className="flex flex-col gap-4 items-center text-[21.353px] font-black font-pret">
+        <div className="flex flex-col gap-4 items-center text-[21.353px] font-black">
           <img src={waffle} />
           TimeTable
         </div>
@@ -21,12 +21,12 @@ const Home = ({ setScreen }: HomeProp) => {
             onClick={() => {
               setScreen('login');
             }}
-            className="w-full p-3 text-[14px] rounded-md bg-orange text-white text-center font-semibold font-pret hover:bg-orangeHover"
+            className="w-full p-3 text-[14px] rounded-md bg-orange text-white text-center font-semibold hover:bg-orangeHover"
           >
             로그인
           </button>
           <div className="h-3.5"></div>
-          <button className="text-[14px] font-semibold font-pret hover:opacity-60">
+          <button className="text-[14px] font-semibold hover:opacity-60">
             회원가입
           </button>
         </div>
@@ -34,7 +34,7 @@ const Home = ({ setScreen }: HomeProp) => {
         <div className="w-full px-3 flex flex-col items-center">
           <div className="w-full self-stretch gap-2.5 flex justify-center items-center">
             <div className="w-[100px] h-[0.75px] bg-gray"></div>
-            <div className="text-[14px] font-medium text-gray font-pret">
+            <div className="text-[14px] font-medium text-gray">
               SNS 계정으로 계속하기
             </div>
             <div className="w-[100px] h-[0.75px] bg-gray"></div>

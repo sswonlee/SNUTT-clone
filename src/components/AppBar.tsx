@@ -27,7 +27,7 @@ const AppBar = () => {
 
   return (
     <div className="w-full h-[44px] flex justify-between">
-      <div className="h-full w-[93px] flex items-center justify-center text-[15px] font-semibold font-pret">
+      <div className="h-full w-[93px] flex items-center justify-center text-[15px] font-semibold">
         {time}
       </div>
       <div className="h-full w-[95px] flex items-center justify-center gap-1">
