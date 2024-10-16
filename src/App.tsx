@@ -14,7 +14,7 @@ export const App = () => {
   const [screen, setScreen] = useState<Screen>('home');
 
   return (
-    <div className="w-[375px] h-[800px] flex flex-col rounded-md outline outline-1">
+    <div className="w-[375px] h-[800px] flex flex-col">
       <AppBar />
       {screen === 'home' ? (
         <Home setScreen={setScreen} />
