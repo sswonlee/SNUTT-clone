@@ -134,6 +134,16 @@ const Login = ({ setScreen }: LoginProp) => {
   //   }
   // };
 
+  const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (id !== '' && pwd !== '' && e.code === 'Enter') {
+      check();
+      if (button.current !== null) {
+        button.current.textContent = 'loading';
+        button.current.disabled = true;
+      }
+    }
+  };
+
   return (
     <div className="flex flex-col">
       <div className="h-2"></div>
@@ -171,9 +181,11 @@ const Login = ({ setScreen }: LoginProp) => {
               logInLabel.current.textContent = '';
             }
           }}
+          onKeyDown={onEnter}
         />
         비밀번호
         <input
+          type="password"
           className="text-black border-b-[1px] py-2 focus:outline-none"
           placeholder="비밀번호를 입력하세요"
           value={pwd}
@@ -186,6 +198,7 @@ const Login = ({ setScreen }: LoginProp) => {
               logInLabel.current.textContent = '';
             }
           }}
+          onKeyDown={onEnter}
         />
         <div className="flex text-[13px] gap-2 items-center  underline">
           <button>아이디 찾기</button>
