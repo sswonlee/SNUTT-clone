@@ -60,8 +60,12 @@ const Login = ({ setScreen }: LoginProp) => {
             button.current !== null
           ) {
             logInLabel.current.textContent = '계정이 존재하지 않습니다.';
+            logInLabel.current.classList.remove('duration-300');
+            logInLabel.current.classList.remove('bg-white');
             logInLabel.current.classList.add('bg-red-500');
+            logInLabel.current.classList.add('duration-300');
             button.current.textContent = '로그인';
+            button.current.disabled = false;
           } else if (
             'errcode' in json &&
             json.errcode === 8197 &&
@@ -69,8 +73,13 @@ const Login = ({ setScreen }: LoginProp) => {
             button.current !== null
           ) {
             logInLabel.current.textContent = '비밀번호를 확인해보세요.';
+            logInLabel.current.classList.remove('duration-300');
+            logInLabel.current.classList.remove('bg-white');
+
             logInLabel.current.classList.add('bg-red-500');
+            logInLabel.current.classList.add('duration-300');
             button.current.textContent = '로그인';
+            button.current.disabled = false;
           }
         },
       )
@@ -78,6 +87,10 @@ const Login = ({ setScreen }: LoginProp) => {
         window.alert('error. 😓🤬');
       });
   };
+
+  // axios 를 이용했을 때 eslint 경고로 진행하지 못했던 흔적
+  // -> fetch가 나은 방법인가?
+
   // const checkIdentity = async () => {
   //   try {
   //     await axios
@@ -151,6 +164,12 @@ const Login = ({ setScreen }: LoginProp) => {
           value={id}
           onChange={(e) => {
             setId(e.target.value);
+            if (logInLabel.current !== null) {
+              logInLabel.current.classList.remove('duration-300');
+              logInLabel.current.classList.remove('bg-red-500');
+              logInLabel.current.classList.add('bg-white');
+              logInLabel.current.textContent = '';
+            }
           }}
         />
         비밀번호
@@ -160,6 +179,12 @@ const Login = ({ setScreen }: LoginProp) => {
           value={pwd}
           onChange={(e) => {
             setPwd(e.target.value);
+            if (logInLabel.current !== null) {
+              logInLabel.current.classList.remove('duration-300');
+              logInLabel.current.classList.remove('bg-red-500');
+              logInLabel.current.classList.add('bg-white');
+              logInLabel.current.textContent = '';
+            }
           }}
         />
         <div className="flex text-[13px] gap-2 items-center  underline">
@@ -175,10 +200,11 @@ const Login = ({ setScreen }: LoginProp) => {
             check();
             if (button.current !== null) {
               button.current.textContent = 'loading';
+              button.current.disabled = true;
             }
           }}
           disabled={id === '' || pwd === '' ? true : false}
-          className="flex items-center justify-center text-[16px] bg-orange hover:bg-orangeHover disabled:bg-gray p-3 text-white bottom-0 rounded-md "
+          className="flex items-center justify-center text-[16px] bg-orange hover:bg-orangeHover disabled:bg-gray p-3 text-white bottom-0 rounded-md duration-300"
         >
           로그인
         </button>
