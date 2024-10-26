@@ -2,27 +2,22 @@ import './reset.css';
 import './App.css';
 import 'pretendard/dist/web/static/pretendard.css';
 
-import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import AppBar from './components/AppBar';
 import Home from './components/Home';
 import Login from './components/Login';
 import Nickname from './components/Nickname';
-import type { Screen } from './types';
 
 export const App = () => {
-  const [screen, setScreen] = useState<Screen>('home');
-
   return (
-    <div className="w-[375px] h-[800px] flex flex-col">
-      <AppBar />
-      {screen === 'home' ? (
-        <Home setScreen={setScreen} />
-      ) : screen === 'login' ? (
-        <Login setScreen={setScreen} />
-      ) : (
-        <Nickname />
-      )}
+    <div className="w-[375px] h-[800px] flex flex-col pt-11 pb-[34px] relative">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/mypage" element={<Nickname />}></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 };
