@@ -1,17 +1,14 @@
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import left from '../assets/Left.png';
-import type { Screen } from '../types';
 
-type LoginProp = {
-  setScreen: (arg: Screen) => void;
-};
-
-const Login = ({ setScreen }: LoginProp) => {
+const Login = () => {
   const [id, setId] = useState('');
   const [pwd, setPwd] = useState('');
   const logInLabel = useRef<HTMLDivElement>(null);
   const button = useRef<HTMLButtonElement>(null);
+  const nav = useNavigate();
 
   const check = () => {
     fetch(
@@ -52,7 +49,7 @@ const Login = ({ setScreen }: LoginProp) => {
               ';expires=' +
               date.toUTCString() +
               ';path=/';
-            setScreen('nickname');
+            nav('/');
           } else if (
             'errcode' in json &&
             json.errcode === 8196 &&
@@ -145,12 +142,12 @@ const Login = ({ setScreen }: LoginProp) => {
   };
 
   return (
-    <div className="flex flex-col">
+    <>
       <div className="h-2"></div>
       <div className="flex justify-center items-center relative text-[20px] font-bold border-b-[1.5px] border-zinc-300 pb-3">
         <button
           onClick={() => {
-            setScreen('home');
+            nav('/');
           }}
           className="flex gap-1 items-center justify-center absolute left-1 font-medium"
         >
@@ -222,7 +219,7 @@ const Login = ({ setScreen }: LoginProp) => {
           로그인
         </button>
       </div>
-    </div>
+    </>
   );
 };
 
