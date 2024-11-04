@@ -4,7 +4,7 @@ import type { UserInfo } from '../types';
 import useToken from '../utils/useToken';
 import NavBar from './NavBar';
 
-const Nickname = () => {
+const MyPage = () => {
   const [nickname, setNickname] = useState<{ nickname: string; tag: string }>({
     nickname: '',
     tag: '',
@@ -12,7 +12,6 @@ const Nickname = () => {
   const token = useToken();
 
   useEffect(() => {
-    let ignore = false;
     if (token !== undefined) {
       fetch(
         'https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/users/me',
@@ -25,24 +24,20 @@ const Nickname = () => {
       )
         .then((response) => response.json())
         .then((json: UserInfo) => {
-          if (!ignore)
-            setNickname({
-              nickname: json.nickname.nickname,
-              tag: json.nickname.tag,
-            });
+          setNickname({
+            nickname: json.nickname.nickname,
+            tag: json.nickname.tag,
+          });
         })
         .catch((err: unknown) => {
           window.alert(err);
         });
     }
-    return () => {
-      ignore = true;
-    };
   }, [token]);
 
   return (
     <>
-      <div className="h-full w-full flex flex-col justify-center items-center">
+      <div className="h-full w-full flex flex-col justify-center items-center flex-grow">
         <p className="font-black text-xl">
           {nickname.nickname !== '' ? nickname.nickname + '🔥' : 'loading..'}
         </p>
@@ -55,4 +50,4 @@ const Nickname = () => {
   );
 };
 
-export default Nickname;
+export default MyPage;

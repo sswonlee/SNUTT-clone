@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Home from './components/Home';
 import Login from './components/Login';
-import Nickname from './components/Nickname';
+import MyPage from './components/MyPage';
 
 export const App = () => {
   return (
@@ -15,7 +15,7 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/mypage" element={<Nickname />}></Route>
+          <Route path="/mypage" element={<MyPage />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

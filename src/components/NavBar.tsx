@@ -16,7 +16,7 @@ const NavBar = () => {
   const loc = useLocation();
 
   return (
-    <div className="flex w-full justify-between items-center px-[30px] py-2.5 absolute bottom-[34px]">
+    <div className="flex w-full justify-between items-center px-[30px] py-2.5">
       <button
         onClick={() => {
           nav('/');

@@ -15,7 +15,7 @@ const Home = () => {
         token === '' ? (
           <>
             <div className="h-[232px]"></div>
-            <div className="w-full flex flex-col items-center">
+            <div className="flex-grow flex flex-col items-center">
               <div className="flex flex-col gap-4 items-center text-[21.353px] font-black">
                 <img src={waffle} />
                 TimeTable
