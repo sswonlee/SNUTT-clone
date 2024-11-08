@@ -4,6 +4,7 @@ import 'pretendard/dist/web/static/pretendard.css';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import Account from './components/Account';
 import Home from './components/Home';
 import Login from './components/Login';
 import MyPage from './components/MyPage';
@@ -16,6 +17,7 @@ export const App = () => {
           <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/mypage" element={<MyPage />}></Route>
+          <Route path="/mypage/account" element={<Account />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

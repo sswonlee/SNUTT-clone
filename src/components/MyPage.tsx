@@ -47,8 +47,8 @@ const MyPage = () => {
 
   return (
     <>
-      <div className="h-100 w-full justify-center place-items-center bg-white">
-        <p className="text-[17px] font-bold pb-1">더보기</p>
+      <div className="h-[30px] w-full justify-center place-items-center bg-white">
+        <p className="text-[17px] font-bold">더보기</p>
       </div>
       {nickname.nickname !== '' ? (
         <div className="h-full w-full flex flex-col px-5 pt-8 bg-slate-100 overscroll-contain overflow-y-auto [&::-webkit-scrollbar]:w-[1px]">
@@ -63,7 +63,7 @@ const MyPage = () => {
             <div className="text-[15px] text-slate-500 ml-auto mr-3">
               {nickname.nickname + '#' + nickname.tag}
             </div>
-            <div className="text-[15px] text-slate-500">{'>'}</div>
+            <div className="text-[17px] text-slate-500 pb-1">{'>'}</div>
           </button>
 
           <div className="text-[13px] text-slate-500 ml-2 mb-1">디스플레이</div>
@@ -73,24 +73,30 @@ const MyPage = () => {
               <div className="text-[15px] text-slate-500 ml-auto mr-3">
                 라이트 모드
               </div>
-              <div className="text-[15px] text-slate-500">{'>'}</div>
+              <div className="text-[17px] text-slate-500 pb-1">{'>'}</div>
             </button>
             <div className="ml-3 mr-0 w-full border-[0.8px] rounded-l-lg border-slate-100" />
             <button className="w-full flex flex-row mx-2 px-2 py-2 items-center bg-white">
               <div className="text-[15px] font-medium">시간표 설정</div>
-              <div className="text-[15px] text-slate-500 ml-auto">{'>'}</div>
+              <div className="text-[17px] text-slate-500 pb-1 ml-auto">
+                {'>'}
+              </div>
             </button>
             <div className="ml-3 mr-0 w-full border-[0.8px] rounded-l-lg border-slate-100" />
             <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md items-center bg-white">
               <div className="text-[15px] font-medium">시간표 테마</div>
-              <div className="text-[15px] text-slate-500 ml-auto">{'>'}</div>
+              <div className="text-[17px] text-slate-500 pb-1 ml-auto">
+                {'>'}
+              </div>
             </button>
           </div>
           <div className="text-[13px] text-slate-500 ml-2 mb-1">서비스</div>
           <div className="w-full flex flex-col mb-8 rounded-md border-0 items-center bg-white">
             <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md items-center bg-white">
               <div className="text-[15px] font-medium">빈자리 알림</div>
-              <div className="text-[15px] text-slate-500 ml-auto">{'>'}</div>
+              <div className="text-[17px] text-slate-500 pb-1 ml-auto">
+                {'>'}
+              </div>
             </button>
           </div>
           <div className="text-[13px] text-slate-500 ml-2 mb-1">
@@ -106,29 +112,39 @@ const MyPage = () => {
             <div className="ml-3 mr-0 w-full border-[0.8px] rounded-l-lg border-slate-100" />
             <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md items-center bg-white">
               <div className="text-[15px] font-medium">개발자 정보</div>
-              <div className="text-[15px] text-slate-500 ml-auto">{'>'}</div>
+              <div className="text-[17px] text-slate-500 pb-1 ml-auto">
+                {'>'}
+              </div>
             </button>
           </div>
           <div className="w-full flex flex-col mb-8 rounded-md border-0 items-center bg-white">
             <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md  items-center bg-white">
               <div className="text-[15px] font-medium">개발자 괴롭히기</div>
-              <div className="text-[15px] text-slate-500 ml-auto">{'>'}</div>
+              <div className="text-[17px] text-slate-500 pb-1 ml-auto">
+                {'>'}
+              </div>
             </button>
           </div>
           <div className="w-full flex flex-col mb-8 rounded-md border-0 items-center bg-white">
             <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md  items-center bg-white">
               <div className="text-[15px] font-medium">오픈소스 라이선스</div>
-              <div className="text-[15px] text-slate-500 ml-auto">{'>'}</div>
+              <div className="text-[17px] text-slate-500 pb-1 ml-auto">
+                {'>'}
+              </div>
             </button>
             <div className="ml-3 mr-0 w-full border-[0.8px] rounded-l-lg border-slate-100" />
             <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md  items-center bg-white">
               <div className="text-[15px] font-medium">서비스 약관</div>
-              <div className="text-[15px] text-slate-500 ml-auto">{'>'}</div>
+              <div className="text-[17px] text-slate-500 pb-1 ml-auto">
+                {'>'}
+              </div>
             </button>
             <div className="ml-3 mr-0 w-full border-[0.8px] rounded-l-lg border-slate-100" />
             <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md  items-center bg-white">
               <div className="text-[15px] font-medium">개인정보처리방침</div>
-              <div className="text-[15px] text-slate-500 ml-auto">{'>'}</div>
+              <div className="text-[17px] text-slate-500 pb-1 ml-auto">
+                {'>'}
+              </div>
             </button>
           </div>
           <div className="w-full flex flex-col mb-4 rounded-md border-0 items-center bg-white">
@@ -142,7 +158,9 @@ const MyPage = () => {
               <div className="text-[15px] text-red-500 font-medium">
                 로그아웃
               </div>
-              <div className="text-[15px] text-slate-500 ml-auto">{'>'}</div>
+              <div className="text-[17px] text-slate-500 pb-1 ml-auto">
+                {'>'}
+              </div>
             </button>
           </div>
         </div>
