@@ -40,7 +40,7 @@ const NavBar = () => {
         }}
         className="w-[30px] h-[30px]"
       >
-        <img src={loc.pathname === '/mypage' ? SettingSel : Setting} />
+        <img src={loc.pathname.includes('/mypage') ? SettingSel : Setting} />
       </button>
     </div>
   );
