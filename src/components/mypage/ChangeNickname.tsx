@@ -41,15 +41,15 @@ function ChangeNickname() {
   };
   return (
     <>
-      <div className="h-8 w-full border-b-[1px] border-zinc-200">
-        <p className="relative font-bold text-center">
+      <div className="h-12 w-full border-b-[1px] border-zinc-200">
+        <p className="relative h-2 font-bold text-center">
           <button
             onClick={() => {
               nav('/mypage/account');
             }}
             className="h-full w-fit flex items-start"
           >
-            <div className="absolute left-0">
+            <div className="absolute left-3 top-2">
               <FontAwesomeIcon icon={faChevronLeft} className="mr-1" />내 계정
             </div>
           </button>
@@ -57,7 +57,7 @@ function ChangeNickname() {
           <button
             onClick={save_nickname}
             disabled={newNickname === ''}
-            className="absolute right-0 w-fit h-full font-semibold disabled:text-zinc-400"
+            className="absolute right-3 top-2 w-fit h-full font-semibold disabled:text-zinc-400"
           >
             저장
           </button>
