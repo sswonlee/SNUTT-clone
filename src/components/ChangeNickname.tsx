@@ -14,7 +14,7 @@ function ChangeNickname() {
   const token = useToken();
   const [newNickname, setNewNickname] = useState('');
 
-  const save_nickname = (newNickname: string) => {
+  const save_nickname = () => {
     fetch(
       'https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/users/me',
       {
@@ -22,7 +22,7 @@ function ChangeNickname() {
         headers: {
           'Content-Type': 'application/json',
           'x-access-token': token,
-        },
+        } as HeadersInit,
         body: JSON.stringify({
           nickname: newNickname,
         }),
@@ -34,6 +34,7 @@ function ChangeNickname() {
           nickname: json.nickname.nickname,
           tag: json.nickname.tag,
         });
+        nav('/mypage/account');
       })
       .catch((err: unknown) => {
         window.alert(err);
@@ -53,9 +54,9 @@ function ChangeNickname() {
         </button>
         <div className="text-[17px] font-bold pb-1 mr-auto">닉네임 변경</div>
         <button
-          onClick={() => {
-            save_nickname(newNickname);
-          }}
+          onClick={save_nickname}
+          disabled={newNickname === ''}
+          className="font-semibold disabled:text-zinc-400"
         >
           저장
         </button>
