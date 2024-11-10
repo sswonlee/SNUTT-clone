@@ -38,18 +38,9 @@ const MyPageLayout = () => {
 
   return (
     <>
-      {nickname.nickname !== '' ? (
-        <UserContext.Provider value={nickname}>
-          <Outlet></Outlet>
-        </UserContext.Provider>
-      ) : (
-        <div className="h-full w-full flex flex-col justify-center items-center flex-grow">
-          <p className="font-black text-xl">loading...</p>
-          <p className="font-semibold text-zinc-500">
-            {nickname.tag !== '' ? '#' + nickname.tag : ''}
-          </p>
-        </div>
-      )}
+      <UserContext.Provider value={nickname}>
+        <Outlet></Outlet>
+      </UserContext.Provider>
     </>
   );
 };
