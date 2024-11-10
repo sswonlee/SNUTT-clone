@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import google from '../assets/Google.png';
 import waffle from '../assets/Waffle.svg';
 import useToken from '../utils/useToken';
+import NavBar from './NavBar';
 import TimeTable from './TimeTable';
 
 const Home = () => {
@@ -57,7 +58,10 @@ const Home = () => {
             </div>
           </>
         ) : (
-          <TimeTable token={token} />
+          <>
+            <TimeTable token={token} />
+            <NavBar></NavBar>
+          </>
         )
       ) : null}
     </>

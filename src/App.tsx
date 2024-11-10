@@ -18,16 +18,23 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/mypage" element={<MyPageLayout />}>
+          <Route
+            path="/mypage"
+            element={
+              <>
+                <MyPageLayout />
+                <NavBar></NavBar>
+              </>
+            }
+          >
             <Route path="" element={<MyPage />} />
-            <Route path="account" element={<Account />}></Route>{' '}
+            <Route path="account" element={<Account />}></Route>
             <Route
               path="account/change-nickname"
               element={<ChangeNickname />}
             />
           </Route>
         </Routes>
-        <NavBar></NavBar>
       </BrowserRouter>
     </div>
   );
