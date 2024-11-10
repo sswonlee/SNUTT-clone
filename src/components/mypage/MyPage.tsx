@@ -18,10 +18,10 @@ const MyPage = () => {
 
   return (
     <>
-      <div className="h-[30px] w-full justify-center place-items-center bg-white">
-        <p className="text-[17px] font-bold">더보기</p>
+      <div className="h-8 w-full border-b-[1px] border-zinc-200">
+        <p className="font-bold text-center">더보기</p>
       </div>
-      <div className="h-full w-full flex flex-col px-5 pt-8 bg-slate-100 overscroll-contain overflow-y-auto [&::-webkit-scrollbar]:w-[1px]">
+      <div className="flex flex-col p-5 bg-zinc-100 overflow-y-auto">
         <button
           onClick={() => {
             nav('/mypage/account');
