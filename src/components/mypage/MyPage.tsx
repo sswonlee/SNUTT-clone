@@ -1,9 +1,8 @@
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import manicon from '../../assets/manicon.png';
 import { UserContext } from '../MyPageLayout';
 
 const MyPage = () => {
@@ -27,9 +26,13 @@ const MyPage = () => {
           onClick={() => {
             nav('/mypage/account');
           }}
-          className="w-full flex flex-row px-2 mb-8 py-5 rounded-md border-0 items-center bg-white"
+          className="w-full flex flex-row px-2 mb-8 py-2 rounded-md border-0 items-center bg-white"
         >
-          <img className="w-[20px] h-[20px] mr-1" src={manicon} />
+          <FontAwesomeIcon
+            icon={faUser}
+            style={{ color: 'black' }}
+            className="mx-2"
+          />
           <div className="text-[15px] font-medium">내 계정</div>
           <div className="text-[15px] text-slate-500 ml-auto mr-3">
             {nickname.nickname !== ''

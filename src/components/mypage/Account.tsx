@@ -1,3 +1,4 @@
+import { faCopy } from '@fortawesome/free-regular-svg-icons';
 import {
   faChevronLeft,
   faChevronRight,
@@ -6,7 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import copy from '../../assets/copy.svg';
 import { UserContext } from '../MyPageLayout';
 
 const Account = () => {
@@ -48,9 +48,9 @@ const Account = () => {
             />
           </button>
           <div className="ml-3 mr-0 w-full border-[0.8px] rounded-l-lg border-slate-100" />
-          <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md items-center bg-white">
+          <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md items-center justify-between bg-white">
             <div className="text-[15px] font-medium">닉네임 복사하기</div>
-            <img src={copy} className="w-[18px] h-[18px] ml-auto " />
+            <FontAwesomeIcon icon={faCopy} style={{ color: '#64748b' }} />
           </button>
         </div>
         <div className="w-full flex flex-col mb-8 rounded-md border-0 items-center bg-white">
@@ -68,7 +68,7 @@ const Account = () => {
           </button>
         </div>
         <div className="w-full flex flex-col mb-8 rounded-md border-0 items-center bg-white">
-          <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md items-center bg-white">
+          <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md items-center justify-between bg-white">
             <div className="text-[15px] font-medium">SNS 계정 연동 및 해제</div>
             <FontAwesomeIcon
               icon={faChevronRight}
