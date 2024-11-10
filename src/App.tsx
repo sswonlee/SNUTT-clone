@@ -35,6 +35,7 @@ export const App = () => {
             />
           </Route>
         </Routes>
+        <NavBar></NavBar>
       </BrowserRouter>
     </div>
   );
