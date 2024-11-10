@@ -5,6 +5,7 @@ import 'pretendard/dist/web/static/pretendard.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Account from './components/Account';
+import ChangeNickname from './components/ChangeNickname';
 import Home from './components/Home';
 import Login from './components/Login';
 import MyPage from './components/MyPage';
@@ -18,6 +19,10 @@ export const App = () => {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/mypage" element={<MyPage />}></Route>
           <Route path="/mypage/account" element={<Account />}></Route>
+          <Route
+            path="/mypage/account/change-nickname"
+            element={<ChangeNickname />}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </div>
