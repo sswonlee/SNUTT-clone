@@ -15,15 +15,15 @@ const Account = () => {
 
   return (
     <>
-      <div className="h-8 w-full border-b-[1px] border-zinc-200">
-        <p className="relative font-bold text-center">
+      <div className="h-12 my-auto w-full border-b-[1px] border-zinc-200">
+        <p className="relative my-auto h-2 font-bold text-center">
           <button
             onClick={() => {
               nav('/mypage');
             }}
             className="h-full flex items-start"
           >
-            <div className="absolute left-0">
+            <div className="absolute left-3 top-2">
               <FontAwesomeIcon icon={faChevronLeft} className="mr-1" />
               더보기
             </div>

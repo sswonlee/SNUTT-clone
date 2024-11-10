@@ -19,16 +19,16 @@ const MyPage = () => {
 
   return (
     <>
-      <div className="h-8 w-full border-b-[1px] border-zinc-200">
+      <div className="flex justify-center items-center h-12 w-full border-b-[1px] border-zinc-200">
         <p className="font-bold text-center">더보기</p>
       </div>
-      <div className="flex flex-col p-5 bg-zinc-100 overflow-y-auto">
+      <div className="h-full flex flex-col p-5 bg-zinc-100 overflow-y-auto">
         <div className="p-2 mb-8 bg-white rounded-lg">
           <button
             onClick={() => {
               nav('/mypage/account');
             }}
-            className="flex justify-between w-full h-fit"
+            className="flex items-center justify-between w-full h-fit"
           >
             <div className="flex items-center">
               <FontAwesomeIcon
@@ -54,9 +54,9 @@ const MyPage = () => {
 
         <div className="text-xs text-zinc-500 m-1">디스플레이</div>
         <div className="p-2 mb-8 bg-white rounded-lg">
-          <button className="w-full flex pb-2 border-b-[1px] border-zinc-200">
+          <button className="w-full flex items-center pb-2 border-b-[1px] border-zinc-200">
             <div>색상 모드</div>
-            <div className="text-[15px] text-slate-500 ml-auto mr-3">
+            <div className="text-sm font-semibold text-zinc-400 ml-auto mr-3">
               라이트 모드
             </div>
             <FontAwesomeIcon
