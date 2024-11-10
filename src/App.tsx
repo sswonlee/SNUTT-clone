@@ -1,4 +1,3 @@
-import './reset.css';
 import './App.css';
 import 'pretendard/dist/web/static/pretendard.css';
 

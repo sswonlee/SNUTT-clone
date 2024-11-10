@@ -1,3 +1,8 @@
+import {
+  faChevronLeft,
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,8 +22,10 @@ const Account = () => {
           }}
           className="h-full flex flex-row mr-[88px] items-start"
         >
-          <div className="text-[19px] font-bold mr-2">{'<'}</div>
-          <div className="text-[17px] font-bold py-0.5">더보기</div>
+          <div className="text-[17px] font-bold py-0.5">
+            <FontAwesomeIcon icon={faChevronLeft} className="mr-1" />
+            더보기
+          </div>
         </button>
         <div className="text-[17px] font-bold pb-1 mr-auto">내 계정</div>
       </div>
@@ -35,7 +42,10 @@ const Account = () => {
             <div className="text-[15px] text-slate-500 ml-auto mr-3">
               {nickname.nickname + '#' + nickname.tag}
             </div>
-            <div className="text-[17px] text-slate-500 pb-1">{'>'}</div>
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              style={{ color: '#a1a1aa' }}
+            />
           </button>
           <div className="ml-3 mr-0 w-full border-[0.8px] rounded-l-lg border-slate-100" />
           <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md items-center bg-white">
@@ -49,15 +59,21 @@ const Account = () => {
             {/* <div className="text-[15px] text-slate-500 ml-auto">{userid}</div> */}
           </div>
           <div className="ml-3 mr-0 w-full border-[0.8px] rounded-l-lg border-slate-100" />
-          <button className="w-full flex flex-row mx-2 px-2 py-2 items-center bg-white">
+          <button className="w-full flex mx-2 px-2 py-2 items-center justify-between bg-white">
             <div className="text-[15px] font-medium">비밀번호 변경</div>
-            <div className="text-[17px] text-slate-500 pb-1 ml-auto">{'>'}</div>
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              style={{ color: '#a1a1aa' }}
+            />
           </button>
         </div>
         <div className="w-full flex flex-col mb-8 rounded-md border-0 items-center bg-white">
           <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md items-center bg-white">
             <div className="text-[15px] font-medium">SNS 계정 연동 및 해제</div>
-            <div className="text-[17px] text-slate-500 pb-1 ml-auto">{'>'}</div>
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              style={{ color: '#a1a1aa' }}
+            />
           </button>
         </div>
         <div className="w-full flex flex-col mb-8 rounded-md border-0 items-center bg-white">

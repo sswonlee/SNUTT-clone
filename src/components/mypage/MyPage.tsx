@@ -1,3 +1,5 @@
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -34,7 +36,7 @@ const MyPage = () => {
               ? nickname.nickname + '#' + nickname.tag
               : 'loading'}
           </div>
-          <div className="text-[17px] text-slate-500 pb-1">{'>'}</div>
+          <FontAwesomeIcon icon={faChevronRight} style={{ color: '#a1a1aa' }} />
         </button>
 
         <div className="text-[13px] text-slate-500 ml-2 mb-1">디스플레이</div>
@@ -44,24 +46,36 @@ const MyPage = () => {
             <div className="text-[15px] text-slate-500 ml-auto mr-3">
               라이트 모드
             </div>
-            <div className="text-[17px] text-slate-500 pb-1">{'>'}</div>
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              style={{ color: '#a1a1aa' }}
+            />
           </button>
           <div className="ml-3 mr-0 w-full border-[0.8px] rounded-l-lg border-slate-100" />
-          <button className="w-full flex flex-row mx-2 px-2 py-2 items-center bg-white">
+          <button className="w-full flex flex-row mx-2 px-2 py-2 items-center justify-between">
             <div className="text-[15px] font-medium">시간표 설정</div>
-            <div className="text-[17px] text-slate-500 pb-1 ml-auto">{'>'}</div>
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              style={{ color: '#a1a1aa' }}
+            />
           </button>
           <div className="ml-3 mr-0 w-full border-[0.8px] rounded-l-lg border-slate-100" />
-          <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md items-center bg-white">
+          <button className="w-full flex flex-row mx-2 px-2 py-2 items-center justify-between">
             <div className="text-[15px] font-medium">시간표 테마</div>
-            <div className="text-[17px] text-slate-500 pb-1 ml-auto">{'>'}</div>
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              style={{ color: '#a1a1aa' }}
+            />
           </button>
         </div>
         <div className="text-[13px] text-slate-500 ml-2 mb-1">서비스</div>
         <div className="w-full flex flex-col mb-8 rounded-md border-0 items-center bg-white">
-          <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md items-center bg-white">
+          <button className="w-full flex flex-row mx-2 px-2 py-2 items-center justify-between">
             <div className="text-[15px] font-medium">빈자리 알림</div>
-            <div className="text-[17px] text-slate-500 pb-1 ml-auto">{'>'}</div>
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              style={{ color: '#a1a1aa' }}
+            />
           </button>
         </div>
         <div className="text-[13px] text-slate-500 ml-2 mb-1">정보 및 제안</div>
@@ -73,31 +87,46 @@ const MyPage = () => {
             </div>
           </div>
           <div className="ml-3 mr-0 w-full border-[0.8px] rounded-l-lg border-slate-100" />
-          <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md items-center bg-white">
+          <button className="w-full flex flex-row mx-2 px-2 py-2 items-center justify-between">
             <div className="text-[15px] font-medium">개발자 정보</div>
-            <div className="text-[17px] text-slate-500 pb-1 ml-auto">{'>'}</div>
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              style={{ color: '#a1a1aa' }}
+            />
           </button>
         </div>
         <div className="w-full flex flex-col mb-8 rounded-md border-0 items-center bg-white">
-          <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md  items-center bg-white">
+          <button className="w-full flex flex-row mx-2 px-2 py-2 items-center justify-between">
             <div className="text-[15px] font-medium">개발자 괴롭히기</div>
-            <div className="text-[17px] text-slate-500 pb-1 ml-auto">{'>'}</div>
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              style={{ color: '#a1a1aa' }}
+            />
           </button>
         </div>
         <div className="w-full flex flex-col mb-8 rounded-md border-0 items-center bg-white">
-          <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md  items-center bg-white">
+          <button className="w-full flex flex-row mx-2 px-2 py-2 items-center justify-between">
             <div className="text-[15px] font-medium">오픈소스 라이선스</div>
-            <div className="text-[17px] text-slate-500 pb-1 ml-auto">{'>'}</div>
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              style={{ color: '#a1a1aa' }}
+            />
           </button>
           <div className="ml-3 mr-0 w-full border-[0.8px] rounded-l-lg border-slate-100" />
-          <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md  items-center bg-white">
+          <button className="w-full flex flex-row mx-2 px-2 py-2 items-center justify-between">
             <div className="text-[15px] font-medium">서비스 약관</div>
-            <div className="text-[17px] text-slate-500 pb-1 ml-auto">{'>'}</div>
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              style={{ color: '#a1a1aa' }}
+            />
           </button>
           <div className="ml-3 mr-0 w-full border-[0.8px] rounded-l-lg border-slate-100" />
-          <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md  items-center bg-white">
+          <button className="w-full flex flex-row mx-2 px-2 py-2 items-center justify-between">
             <div className="text-[15px] font-medium">개인정보처리방침</div>
-            <div className="text-[17px] text-slate-500 pb-1 ml-auto">{'>'}</div>
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              style={{ color: '#a1a1aa' }}
+            />
           </button>
         </div>
         <div className="w-full flex flex-col mb-4 rounded-md border-0 items-center bg-white">
@@ -106,10 +135,13 @@ const MyPage = () => {
               resetToken();
               nav('/');
             }}
-            className="w-full flex flex-row mx-2 px-2 py-2 rounded-md  items-center bg-white"
+            className="w-full flex flex-row mx-2 px-2 py-2 rounded-md  items-center justify-between"
           >
             <div className="text-[15px] text-red-500 font-medium">로그아웃</div>
-            <div className="text-[17px] text-slate-500 pb-1 ml-auto">{'>'}</div>
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              style={{ color: '#a1a1aa' }}
+            />
           </button>
         </div>
       </div>
