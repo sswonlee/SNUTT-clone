@@ -13,7 +13,7 @@ import NavBar from './components/NavBar';
 
 export const App = () => {
   return (
-    <div className="w-[375px] h-[800px] flex flex-col pt-11 pb-[34px] relative">
+    <div className="w-[375px] h-[800px] flex flex-col">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>
