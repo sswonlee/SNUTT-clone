@@ -1,18 +1,20 @@
-import { useState } from 'react';
+import {
+  faChevronLeft,
+  faCircleXmark,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import type { UserInfo } from '../types';
-import useToken from '../utils/useToken';
-import NavBar from './NavBar';
+import useToken from '../../utils/useToken';
+import { UserContext } from '../MyPageLayout';
 
 function ChangeNickname() {
+  const nickname = useContext(UserContext);
   const nav = useNavigate();
-  const [nickname, setNickname] = useState<{ nickname: string; tag: string }>({
-    nickname: 'asdf',
-    tag: '',
-  });
   const token = useToken();
   const [newNickname, setNewNickname] = useState('');
+  const inputElement = useRef<HTMLInputElement>(null);
 
   const save_nickname = () => {
     fetch(
@@ -28,13 +30,10 @@ function ChangeNickname() {
         }),
       },
     )
-      .then((response) => response.json())
-      .then((json: UserInfo) => {
-        setNickname({
-          nickname: json.nickname.nickname,
-          tag: json.nickname.tag,
-        });
+      .then((response) => {
         nav('/mypage/account');
+        window.location.reload();
+        return response.json();
       })
       .catch((err: unknown) => {
         window.alert(err);
@@ -42,28 +41,31 @@ function ChangeNickname() {
   };
   return (
     <>
-      <div className="h-[30px] w-full flex flex-row px-2 justify-center place-items-center bg-white">
-        <button
-          onClick={() => {
-            nav('/mypage');
-          }}
-          className="h-full flex flex-row mr-[88px] items-start"
-        >
-          <div className="text-[19px] font-bold mr-2">{'<'}</div>
-          <div className="text-[17px] font-bold py-0.5">더보기</div>
-        </button>
-        <div className="text-[17px] font-bold pb-1 mr-auto">닉네임 변경</div>
-        <button
-          onClick={save_nickname}
-          disabled={newNickname === ''}
-          className="font-semibold disabled:text-zinc-400"
-        >
-          저장
-        </button>
+      <div className="h-8 w-full border-b-[1px] border-zinc-200">
+        <p className="relative font-bold text-center">
+          <button
+            onClick={() => {
+              nav('/mypage/account');
+            }}
+            className="h-full w-fit flex items-start"
+          >
+            <div className="absolute left-0">
+              <FontAwesomeIcon icon={faChevronLeft} className="mr-1" />내 계정
+            </div>
+          </button>
+          닉네임 변경
+          <button
+            onClick={save_nickname}
+            disabled={newNickname === ''}
+            className="absolute right-0 w-fit h-full font-semibold disabled:text-zinc-400"
+          >
+            저장
+          </button>
+        </p>
       </div>
       {nickname.nickname !== '' ? (
-        <div className="h-full w-full flex flex-col px-5 bg-slate-100 overscroll-contain overflow-y-auto [&::-webkit-scrollbar]:w-[1px]">
-          <p className="p-3 text-xs text-zinc-400">
+        <div className="h-full flex flex-col p-5 bg-zinc-100 overflow-y-auto">
+          <p className="pb-2 pl-2 text-xs text-zinc-400">
             닉네임 (공백 포함 한/영/숫자 10자 이내)
           </p>
           <div className="w-full flex rounded-lg justify-between items-center bg-white overflow-hidden">
@@ -74,11 +76,29 @@ function ChangeNickname() {
               onChange={(e) => {
                 setNewNickname(e.target.value);
               }}
+              ref={inputElement}
             ></input>
-            <div className="flex">
-              <p className="w-6 h-6 text-center text-lg bg-zinc-300 rounded-full text-white">
-                x
-              </p>
+            <div className="flex items-center">
+              {newNickname !== '' ? (
+                <button
+                  onClick={() => {
+                    setNewNickname('');
+                    if (inputElement.current !== null) {
+                      inputElement.current.value = '';
+                      inputElement.current.focus();
+                    }
+                  }}
+                >
+                  <FontAwesomeIcon
+                    icon={faCircleXmark}
+                    style={{ color: '#d4d4d8' }}
+                    className="h-5"
+                  />
+                </button>
+              ) : (
+                <></>
+              )}
+
               <p className="px-3 text-zinc-300">#NNNN</p>
             </div>
           </div>
@@ -107,7 +127,6 @@ function ChangeNickname() {
           </p>
         </div>
       )}
-      <NavBar />
     </>
   );
 }

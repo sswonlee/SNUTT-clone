@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 import List from '../assets/List.svg';
 import type { Lecture, Table } from '../types';
-import NavBar from './NavBar';
 
 const TimeTable = ({ token }: { token: string }) => {
   const [table, setTable] = useState<Array<Lecture>>();
@@ -107,7 +106,6 @@ const TimeTable = ({ token }: { token: string }) => {
           )),
         )}
       </div>
-      <NavBar />
     </>
   );
 };
