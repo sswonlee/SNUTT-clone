@@ -1,4 +1,4 @@
-import { faCopy } from '@fortawesome/free-regular-svg-icons';
+import { faCopy, faUser } from '@fortawesome/free-regular-svg-icons';
 import {
   faChevronLeft,
   faChevronRight,
@@ -15,78 +15,88 @@ const Account = () => {
 
   return (
     <>
-      <div className="h-[30px] w-full flex flex-row pl-2 justify-center place-items-center bg-white">
-        <button
-          onClick={() => {
-            nav('/mypage');
-          }}
-          className="h-full flex flex-row mr-[88px] items-start"
-        >
-          <div className="text-[17px] font-bold py-0.5">
-            <FontAwesomeIcon icon={faChevronLeft} className="mr-1" />
-            더보기
-          </div>
-        </button>
-        <div className="text-[17px] font-bold pb-1 mr-auto">내 계정</div>
+      <div className="h-8 w-full border-b-[1px] border-zinc-200">
+        <p className="relative font-bold text-center">
+          <button
+            onClick={() => {
+              nav('/mypage');
+            }}
+            className="h-full flex items-start"
+          >
+            <div className="absolute left-0">
+              <FontAwesomeIcon icon={faChevronLeft} className="mr-1" />
+              더보기
+            </div>
+          </button>
+          내 계정
+        </p>
       </div>
 
-      <div className="h-full w-full flex flex-col px-5 pt-8 bg-slate-100 overscroll-contain overflow-y-auto [&::-webkit-scrollbar]:w-[1px]">
-        <div className="w-full flex flex-col mb-8 rounded-md border-0 items-center bg-white">
+      <div className="h-full flex flex-col p-5 bg-zinc-100 overflow-y-auto">
+        <div className="p-2 mb-8 bg-white rounded-lg">
           <button
             onClick={() => {
               nav('/mypage/account/change-nickname');
             }}
-            className="w-full flex flex-row mx-2 px-2 py-2 rounded-md items-center bg-white"
+            className="flex justify-between items-center pb-2 w-full h-fit border-b-[1px] border-zinc-200"
           >
-            <div className="text-[15px] font-medium">닉네임 변경</div>
-            <div className="text-[15px] text-slate-500 ml-auto mr-3">
-              {nickname.nickname + '#' + nickname.tag}
+            <div className="flex items-center">
+              <FontAwesomeIcon
+                icon={faUser}
+                style={{ color: 'black' }}
+                className="mx-2"
+              />
+              닉네임 변경
             </div>
-            <FontAwesomeIcon
-              icon={faChevronRight}
-              style={{ color: '#a1a1aa' }}
-            />
+
+            <div className="text-sm font-semibold text-zinc-400">
+              {nickname.nickname !== ''
+                ? nickname.nickname + ' #' + nickname.tag
+                : 'loading'}
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                style={{ color: '#a1a1aa' }}
+                className="ml-2"
+              />
+            </div>
           </button>
-          <div className="ml-3 mr-0 w-full border-[0.8px] rounded-l-lg border-slate-100" />
-          <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md items-center justify-between bg-white">
-            <div className="text-[15px] font-medium">닉네임 복사하기</div>
+          <div className="flex justify-between items-center pt-2 w-full h-fit">
+            <div>닉네임 복사하기</div>
             <FontAwesomeIcon icon={faCopy} style={{ color: '#64748b' }} />
-          </button>
+          </div>
         </div>
-        <div className="w-full flex flex-col mb-8 rounded-md border-0 items-center bg-white">
-          <div className="w-full flex flex-row mx-2 px-2 py-2 items-center">
-            <div className="text-[15px] font-medium">아이디</div>
+
+        <div className="p-2 mb-8 bg-white rounded-lg">
+          <div className="flex justify-between pb-2 w-full h-fit border-b-[1px] border-zinc-200">
+            <div>아이디</div>
             {/* <div className="text-[15px] text-slate-500 ml-auto">{userid}</div> */}
           </div>
-          <div className="ml-3 mr-0 w-full border-[0.8px] rounded-l-lg border-slate-100" />
-          <button className="w-full flex mx-2 px-2 py-2 items-center justify-between bg-white">
-            <div className="text-[15px] font-medium">비밀번호 변경</div>
+          <button className="flex justify-between items-center pt-2 w-full h-fit">
+            <div>비밀번호 변경</div>
             <FontAwesomeIcon
               icon={faChevronRight}
               style={{ color: '#a1a1aa' }}
             />
           </button>
         </div>
-        <div className="w-full flex flex-col mb-8 rounded-md border-0 items-center bg-white">
-          <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md items-center justify-between bg-white">
-            <div className="text-[15px] font-medium">SNS 계정 연동 및 해제</div>
+        <div className="p-2 mb-8 bg-white rounded-lg">
+          <button className="flex justify-between items-center w-full h-fit">
+            <div>SNS 계정 연동 및 해제</div>
             <FontAwesomeIcon
               icon={faChevronRight}
               style={{ color: '#a1a1aa' }}
             />
           </button>
         </div>
-        <div className="w-full flex flex-col mb-8 rounded-md border-0 items-center bg-white">
-          <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md items-center bg-white">
-            <div className="text-[15px] font-medium">이메일</div>
+        <div className="p-2 mb-8 bg-white rounded-lg">
+          <button className="flex justify-between w-full h-fit">
+            <div>이메일</div>
             {/* <div className="text-[15px] text-slate-500 ml-auto">{email}</div> */}
           </button>
         </div>
-        <div className="w-full flex flex-col mb-8 rounded-md border-0 items-center bg-white">
-          <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md items-center bg-white">
-            <div className="text-red-500 text-[15px] font-medium">
-              회원 탈퇴
-            </div>
+        <div className="p-2 mb-8 bg-white rounded-lg">
+          <button className="flex justify-between w-full h-fit">
+            <div className="text-red-500">회원 탈퇴</div>
           </button>
         </div>
       </div>

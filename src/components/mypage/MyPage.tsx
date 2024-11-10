@@ -22,7 +22,6 @@ const MyPage = () => {
         <p className="font-bold text-center">더보기</p>
       </div>
       <div className="flex flex-col p-5 bg-zinc-100 overflow-y-auto">
-        {/* 내 계정 버튼 */}
         <div className="p-2 mb-8 bg-white rounded-lg">
           <button
             onClick={() => {
