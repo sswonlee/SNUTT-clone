@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import type { UserInfo } from '../types';
+import useToken from '../utils/useToken';
 import NavBar from './NavBar';
 
 function ChangeNickname() {
@@ -9,6 +11,34 @@ function ChangeNickname() {
     nickname: 'asdf',
     tag: '',
   });
+  const token = useToken();
+  const [newNickname, setNewNickname] = useState('');
+
+  const save_nickname = (newNickname: string) => {
+    fetch(
+      'https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/users/me',
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': token,
+        },
+        body: JSON.stringify({
+          nickname: newNickname,
+        }),
+      },
+    )
+      .then((response) => response.json())
+      .then((json: UserInfo) => {
+        setNickname({
+          nickname: json.nickname.nickname,
+          tag: json.nickname.tag,
+        });
+      })
+      .catch((err: unknown) => {
+        window.alert(err);
+      });
+  };
   return (
     <>
       <div className="h-[30px] w-full flex flex-row px-2 justify-center place-items-center bg-white">
@@ -22,7 +52,13 @@ function ChangeNickname() {
           <div className="text-[17px] font-bold py-0.5">더보기</div>
         </button>
         <div className="text-[17px] font-bold pb-1 mr-auto">닉네임 변경</div>
-        <button>저장</button>
+        <button
+          onClick={() => {
+            save_nickname(newNickname);
+          }}
+        >
+          저장
+        </button>
       </div>
       {nickname.nickname !== '' ? (
         <div className="h-full w-full flex flex-col px-5 bg-slate-100 overscroll-contain overflow-y-auto [&::-webkit-scrollbar]:w-[1px]">
@@ -34,6 +70,9 @@ function ChangeNickname() {
               type="text"
               className="w-full focus:outline-none p-3 placeholder-zinc-300"
               placeholder={nickname.nickname}
+              onChange={(e) => {
+                setNewNickname(e.target.value);
+              }}
             ></input>
             <div className="flex">
               <p className="w-6 h-6 text-center text-lg bg-zinc-300 rounded-full text-white">
