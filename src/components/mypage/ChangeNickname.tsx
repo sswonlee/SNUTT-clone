@@ -40,29 +40,31 @@ function ChangeNickname() {
   };
   return (
     <>
-      <div className="h-[30px] w-full flex flex-row px-2 justify-center place-items-center bg-white">
-        <button
-          onClick={() => {
-            nav('/mypage/account');
-          }}
-          className="h-full flex flex-row mr-[88px] items-start"
-        >
-          <div className="text-[17px] font-bold py-0.5">
-            <FontAwesomeIcon icon={faChevronLeft} className="mr-1" />내 계정
-          </div>
-        </button>
-        <div className="text-[17px] font-bold pb-1 mr-auto">닉네임 변경</div>
-        <button
-          onClick={save_nickname}
-          disabled={newNickname === ''}
-          className="font-semibold disabled:text-zinc-400"
-        >
-          저장
-        </button>
+      <div className="h-8 w-full border-b-[1px] border-zinc-200">
+        <p className="relative font-bold text-center">
+          <button
+            onClick={() => {
+              nav('/mypage/account');
+            }}
+            className="h-full w-fit flex items-start"
+          >
+            <div className="absolute left-0">
+              <FontAwesomeIcon icon={faChevronLeft} className="mr-1" />내 계정
+            </div>
+          </button>
+          닉네임 변경
+          <button
+            onClick={save_nickname}
+            disabled={newNickname === ''}
+            className="absolute right-0 w-fit h-full font-semibold disabled:text-zinc-400"
+          >
+            저장
+          </button>
+        </p>
       </div>
       {nickname.nickname !== '' ? (
-        <div className="h-full w-full flex flex-col px-5 bg-slate-100 overscroll-contain overflow-y-auto [&::-webkit-scrollbar]:w-[1px]">
-          <p className="p-3 text-xs text-zinc-400">
+        <div className="h-full flex flex-col p-5 bg-zinc-100 overflow-y-auto">
+          <p className="pb-2 pl-2 text-xs text-zinc-400">
             닉네임 (공백 포함 한/영/숫자 10자 이내)
           </p>
           <div className="w-full flex rounded-lg justify-between items-center bg-white overflow-hidden">
