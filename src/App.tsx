@@ -4,11 +4,13 @@ import 'pretendard/dist/web/static/pretendard.css';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Account from './components/Account';
-import ChangeNickname from './components/ChangeNickname';
 import Home from './components/Home';
 import Login from './components/Login';
-import MyPage from './components/MyPage';
+import Account from './components/mypage/Account';
+import ChangeNickname from './components/mypage/ChangeNickname';
+import MyPage from './components/mypage/MyPage';
+import MyPageLayout from './components/MyPageLayout';
+import NavBar from './components/NavBar';
 
 export const App = () => {
   return (
@@ -17,13 +19,16 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/mypage" element={<MyPage />}></Route>
-          <Route path="/mypage/account" element={<Account />}></Route>
-          <Route
-            path="/mypage/account/change-nickname"
-            element={<ChangeNickname />}
-          ></Route>
+          <Route path="/mypage" element={<MyPageLayout />}>
+            <Route path="" element={<MyPage />} />
+            <Route path="account" element={<Account />}></Route>{' '}
+            <Route
+              path="account/change-nickname"
+              element={<ChangeNickname />}
+            />
+          </Route>
         </Routes>
+        <NavBar></NavBar>
       </BrowserRouter>
     </div>
   );

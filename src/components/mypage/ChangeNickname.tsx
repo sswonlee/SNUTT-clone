@@ -1,16 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import type { UserInfo } from '../types';
-import useToken from '../utils/useToken';
-import NavBar from './NavBar';
+import useToken from '../../utils/useToken';
+import { UserContext } from '../MyPageLayout';
 
 function ChangeNickname() {
+  const nickname = useContext(UserContext);
   const nav = useNavigate();
-  const [nickname, setNickname] = useState<{ nickname: string; tag: string }>({
-    nickname: 'asdf',
-    tag: '',
-  });
   const token = useToken();
   const [newNickname, setNewNickname] = useState('');
 
@@ -28,13 +24,9 @@ function ChangeNickname() {
         }),
       },
     )
-      .then((response) => response.json())
-      .then((json: UserInfo) => {
-        setNickname({
-          nickname: json.nickname.nickname,
-          tag: json.nickname.tag,
-        });
+      .then((response) => {
         nav('/mypage/account');
+        return response.json();
       })
       .catch((err: unknown) => {
         window.alert(err);
@@ -107,7 +99,6 @@ function ChangeNickname() {
           </p>
         </div>
       )}
-      <NavBar />
     </>
   );
 }

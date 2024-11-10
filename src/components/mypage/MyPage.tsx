@@ -1,17 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import manicon from '../assets/manicon.png';
-import type { UserInfo } from '../types';
-import useToken from '../utils/useToken';
-import NavBar from './NavBar';
+import manicon from '../../assets/manicon.png';
+import { UserContext } from '../MyPageLayout';
 
 const MyPage = () => {
-  const [nickname, setNickname] = useState<{ nickname: string; tag: string }>({
-    nickname: '',
-    tag: '',
-  });
-  const token = useToken();
+  const nickname = useContext(UserContext);
   const nav = useNavigate();
 
   const resetToken = () => {
@@ -20,30 +14,6 @@ const MyPage = () => {
         cookie + '=;expires=' + new Date(0).toUTCString() + ';path=/';
     });
   };
-
-  useEffect(() => {
-    if (token !== undefined) {
-      fetch(
-        'https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/users/me',
-        {
-          method: 'GET',
-          headers: {
-            'x-access-token': token,
-          },
-        },
-      )
-        .then((response) => response.json())
-        .then((json: UserInfo) => {
-          setNickname({
-            nickname: json.nickname.nickname,
-            tag: json.nickname.tag,
-          });
-        })
-        .catch((err: unknown) => {
-          window.alert(err);
-        });
-    }
-  }, [token]);
 
   return (
     <>
@@ -172,7 +142,6 @@ const MyPage = () => {
           </p>
         </div>
       )}
-      <NavBar />
     </>
   );
 };

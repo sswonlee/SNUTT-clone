@@ -1,46 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import copy from '../assets/copy.svg';
-import type { UserInfo } from '../types';
-import useToken from '../utils/useToken';
-import NavBar from './NavBar';
+import copy from '../../assets/copy.svg';
+import { UserContext } from '../MyPageLayout';
 
 const Account = () => {
-  const [nickname, setNickname] = useState<{ nickname: string; tag: string }>({
-    nickname: '',
-    tag: '',
-  });
-  const [email, setEmail] = useState<string>('');
-  const [userid, setId] = useState<string>('');
-  const token = useToken();
+  const nickname = useContext(UserContext);
   const nav = useNavigate();
-
-  useEffect(() => {
-    if (token !== undefined) {
-      fetch(
-        'https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/users/me',
-        {
-          method: 'GET',
-          headers: {
-            'x-access-token': token,
-          },
-        },
-      )
-        .then((response) => response.json())
-        .then((json: UserInfo) => {
-          setNickname({
-            nickname: json.nickname.nickname,
-            tag: json.nickname.tag,
-          });
-          setId(json.localId);
-          setEmail(json.email);
-        })
-        .catch((err: unknown) => {
-          window.alert(err);
-        });
-    }
-  }, [token]);
 
   return (
     <>
@@ -56,7 +22,7 @@ const Account = () => {
         </button>
         <div className="text-[17px] font-bold pb-1 mr-auto">내 계정</div>
       </div>
-      {nickname.nickname !== '' && userid !== '' ? (
+      {nickname.nickname !== '' ? (
         <div className="h-full w-full flex flex-col px-5 pt-8 bg-slate-100 overscroll-contain overflow-y-auto [&::-webkit-scrollbar]:w-[1px]">
           <div className="w-full flex flex-col mb-8 rounded-md border-0 items-center bg-white">
             <button
@@ -80,7 +46,7 @@ const Account = () => {
           <div className="w-full flex flex-col mb-8 rounded-md border-0 items-center bg-white">
             <div className="w-full flex flex-row mx-2 px-2 py-2 items-center">
               <div className="text-[15px] font-medium">아이디</div>
-              <div className="text-[15px] text-slate-500 ml-auto">{userid}</div>
+              {/* <div className="text-[15px] text-slate-500 ml-auto">{userid}</div> */}
             </div>
             <div className="ml-3 mr-0 w-full border-[0.8px] rounded-l-lg border-slate-100" />
             <button className="w-full flex flex-row mx-2 px-2 py-2 items-center bg-white">
@@ -103,7 +69,7 @@ const Account = () => {
           <div className="w-full flex flex-col mb-8 rounded-md border-0 items-center bg-white">
             <button className="w-full flex flex-row mx-2 px-2 py-2 rounded-md items-center bg-white">
               <div className="text-[15px] font-medium">이메일</div>
-              <div className="text-[15px] text-slate-500 ml-auto">{email}</div>
+              {/* <div className="text-[15px] text-slate-500 ml-auto">{email}</div> */}
             </button>
           </div>
           <div className="w-full flex flex-col mb-8 rounded-md border-0 items-center bg-white">
@@ -122,7 +88,6 @@ const Account = () => {
           </p>
         </div>
       )}
-      <NavBar />
     </>
   );
 };
