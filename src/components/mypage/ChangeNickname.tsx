@@ -32,6 +32,7 @@ function ChangeNickname() {
     )
       .then((response) => {
         nav('/mypage/account');
+        window.location.reload();
         return response.json();
       })
       .catch((err: unknown) => {
