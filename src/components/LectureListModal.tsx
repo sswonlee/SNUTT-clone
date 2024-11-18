@@ -1,5 +1,8 @@
 import type { Dispatch, SetStateAction } from 'react';
 
+import Bookmark from '../assets/LectureList/Bookmark.svg';
+import Location from '../assets/LectureList/Location.svg';
+import Time from '../assets/LectureList/Time.svg';
 import Back from '../assets/Left.png';
 import type { Lecture } from '../types';
 
@@ -16,6 +19,14 @@ const LectureListModal = ({
   close: () => void;
   setLecture: Dispatch<SetStateAction<Lecture | undefined>>;
 }) => {
+  const days = ['월', '화', '수', '목', '금'];
+
+  const lecturePlace = (lecture: Lecture) => {
+    return Array.from(
+      new Set(lecture.class_time_json.map((time) => time.place)),
+    );
+  };
+
   return (
     <>
       {display ? (
@@ -35,8 +46,47 @@ const LectureListModal = ({
                 setLecture(lecture);
               }}
               key={i}
+              className="flex flex-col"
             >
-              <div>{lecture.course_title}</div>
+              <div className="flex">
+                <div>{lecture.course_title}</div>
+                <div>
+                  {lecture.instructor} / {lecture.credit}
+                </div>
+              </div>
+              <div className="flex">
+                <img src={Bookmark} className="w-4 h-4" />
+                <div>
+                  {lecture.category !== '' ? `${lecture.category}, ` : ''}
+                  {lecture.department}, {lecture.academic_year}
+                </div>
+              </div>
+              <div className="flex">
+                <img src={Time} className="w-4 h-4" />
+                {lecture.class_time_json.map((time, j) => {
+                  if (j === lecture.class_time_json.length - 1)
+                    return (
+                      <div key={j}>
+                        {days[time.day]}({time.start_time}~{time.end_time})
+                      </div>
+                    );
+                  else
+                    return (
+                      <div key={j}>
+                        {days[time.day]}({time.start_time}~{time.end_time}
+                        ),&nbsp;
+                      </div>
+                    );
+                })}
+              </div>
+              <div className="flex">
+                <img src={Location} className="w-4 h-4" />
+                {lecturePlace(lecture).map((place, j) => {
+                  if (j === lecturePlace(lecture).length - 1)
+                    return <div key={j}>{place}</div>;
+                  else return <div key={j}>{place},&nbsp;</div>;
+                })}
+              </div>
             </div>
           ))}
         </div>

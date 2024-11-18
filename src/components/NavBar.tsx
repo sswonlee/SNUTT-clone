@@ -1,15 +1,15 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import Friend from '../assets/Friend.svg';
+import Friend from '../assets/NavBar/Friend.svg';
 //import FriendSel from '../assets/Friend-sel.svg';
-import Like from '../assets/Like.svg';
+import Like from '../assets/NavBar/Like.svg';
 //import LikeSel from '../assets/Like-sel.svg';
-import Search from '../assets/Search.svg';
+import Search from '../assets/NavBar/Search.svg';
 //import SearchSel from '../assets/Search-sel.svg';
-import Setting from '../assets/Setting.svg';
-import SettingSel from '../assets/Setting-sel.svg';
-import TimeTable from '../assets/TimeTable.svg';
-import TimeTableSel from '../assets/TimeTable-sel.svg';
+import Setting from '../assets/NavBar/Setting.svg';
+import SettingSel from '../assets/NavBar/Setting-sel.svg';
+import TimeTable from '../assets/NavBar/TimeTable.svg';
+import TimeTableSel from '../assets/NavBar/TimeTable-sel.svg';
 
 const NavBar = () => {
   const nav = useNavigate();

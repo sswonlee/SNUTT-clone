@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import Alarm from '../assets/Alarm.svg';
-import Drawer from '../assets/Drawer.svg';
-import List from '../assets/List.svg';
-import Share from '../assets/Share.svg';
+import Alarm from '../assets/TimeTable/Alarm.svg';
+import Drawer from '../assets/TimeTable/Drawer.svg';
+import List from '../assets/TimeTable/List.svg';
+import Share from '../assets/TimeTable/Share.svg';
 import type { Lecture, Table } from '../types';
 import LectureModal from './LectureDetail/LectureModal';
 import LectureListModal from './LectureListModal';

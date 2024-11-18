@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import google from '../assets/Google.png';
+import google from '../assets/Login/Google.png';
 import waffle from '../assets/Waffle.svg';
 import useToken from '../utils/useToken';
 import NavBar from './NavBar';
@@ -47,12 +47,12 @@ const Home = () => {
                 </div>
                 <div className="h-6"></div>
                 <div className="flex items-center gap-3">
-                  <button className="bg-[url('/src/assets/Kakao.png')] bg-[position:-2.973px_-1.784px] bg-[length:106.757%_104.054%] w-11 h-11 rounded-full" />
+                  <button className="bg-[url('/src/assets/Login/Kakao.png')] bg-[position:-2.973px_-1.784px] bg-[length:106.757%_104.054%] w-11 h-11 rounded-full" />
                   <button className="w-11 h-11 p-[9.6px] flex justify-center items-center border-[0.4px] border-gray rounded-full">
                     <img src={google} className="w-[24.8px] h-[24.8px]" />
                   </button>
-                  <button className="bg-[url('/src/assets/Facebook.png')] bg-[position:50%] bg-cover w-11 h-11 rounded-full" />
-                  <button className="bg-[url('/src/assets/Apple.png')] bg-[position:-4.046px_-4.702px] bg-[length:119.923%_120.611%] w-11 h-11 rounded-full" />
+                  <button className="bg-[url('/src/assets/Login/Facebook.png')] bg-[position:50%] bg-cover w-11 h-11 rounded-full" />
+                  <button className="bg-[url('/src/assets/Login/Apple.png')] bg-[position:-4.046px_-4.702px] bg-[length:119.923%_120.611%] w-11 h-11 rounded-full" />
                 </div>
               </div>
             </div>
