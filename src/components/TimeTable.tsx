@@ -1,13 +1,42 @@
 import { useEffect, useState } from 'react';
 
-import List from '../assets/List.svg';
+import Alarm from '../assets/TimeTable/Alarm.svg';
+import Drawer from '../assets/TimeTable/Drawer.svg';
+import List from '../assets/TimeTable/List.svg';
+import Share from '../assets/TimeTable/Share.svg';
 import type { Lecture, Table } from '../types';
+import LectureModal from './LectureDetail/LectureModal';
+import LectureListModal from './LectureListModal';
 
 const TimeTable = ({ token }: { token: string }) => {
-  const [table, setTable] = useState<Array<Lecture>>();
+  const [table, setTable] = useState<Table>();
   const [credit, setCredit] = useState(0);
-  const [title, setTitle] = useState('');
+  const [selectedLecture, setSelectedLecture] = useState<Lecture>();
+  const [listModal, setListModal] = useState(false);
   const HOUR_NUMBER = 12;
+  const color = [
+    '#E54459',
+    '#F58D3D',
+    '#FAC52D',
+    '#A6D930',
+    '#2BC366',
+    '#1BD0C9',
+    '#1D99E9',
+    '#4F48C4',
+    '#AF56B3',
+  ];
+  const deleteLecture = () => {
+    if (table !== undefined) {
+      let tmp = table.lecture_list;
+      tmp = tmp.filter((lecture) => lecture._id !== selectedLecture?._id);
+      setTable({ ...table, lecture_list: tmp });
+      let cr = 0;
+      tmp.map((item) => {
+        cr += item.credit;
+      });
+      setCredit(cr);
+    }
+  };
 
   useEffect(() => {
     fetch(
@@ -21,13 +50,12 @@ const TimeTable = ({ token }: { token: string }) => {
     )
       .then((res) => res.json())
       .then((data: Table) => {
-        setTable(data.lecture_list);
-        let tmp = 0;
+        setTable(data);
+        let cr = 0;
         data.lecture_list.map((item) => {
-          tmp += item.credit;
+          cr += item.credit;
         });
-        setCredit(tmp);
-        setTitle(data.title);
+        setCredit(cr);
       })
       .catch((err: unknown) => {
         window.alert(err);
@@ -36,14 +64,33 @@ const TimeTable = ({ token }: { token: string }) => {
 
   return (
     <>
-      <div className="flex h-10 w-full items-center pl-4">
-        <button className="w-[26px] h-[26px]">
-          <img src={List} />
-        </button>
-        <div className="w-3"></div>
-        <div className="text-[17px] font-bold">{title}</div>
-        <div className="w-2"></div>
-        <div className="text-xs font-normal text-gray">({`${credit}학점`})</div>
+      <div className="flex h-10 w-full items-center justify-between px-4">
+        <div className="flex h-full items-center">
+          <button className="w-[26px] h-[26px]">
+            <img src={Drawer} />
+          </button>
+          <div className="w-3"></div>
+          <div className="text-[17px] font-bold">{table?.title}</div>
+          <div className="w-2"></div>
+          <div className="text-xs font-normal text-gray">
+            ({`${credit}학점`})
+          </div>
+        </div>
+        <div className="flex h-full items-center gap-[15px]">
+          <button
+            onClick={() => {
+              setListModal(true);
+            }}
+          >
+            <img className="w-5 h-5" src={List} />
+          </button>
+          <button>
+            <img className="w-5 h-5" src={Share} />
+          </button>
+          <button>
+            <img className="w-6 h-6" src={Alarm} />
+          </button>
+        </div>
       </div>
       <div
         className={`grid flex-grow grid-cols-[20px_repeat(5,1fr)] grid-rows-[32px_repeat(${12 * HOUR_NUMBER},1fr)]`}
@@ -83,12 +130,16 @@ const TimeTable = ({ token }: { token: string }) => {
             ></div>
           )),
         )}
-        {table?.map((lecture) =>
+        {table?.lecture_list.map((lecture) =>
           lecture.class_time_json.map((time, i) => (
-            <div
+            <button
+              onClick={() => {
+                setSelectedLecture(lecture);
+              }}
               key={i}
-              className="flex flex-col px-[6px] box-border justify-center items-center bg-black text-white"
+              className="flex flex-col px-[6px] box-border justify-center items-center text-white"
               style={{
+                backgroundColor: color[lecture.colorIndex - 1],
                 gridColumnStart: time.day + 2,
                 gridColumnEnd: time.day + 3,
                 gridRowStart: (time.startMinute - 60 * 9) / 5 + 2,
@@ -102,9 +153,31 @@ const TimeTable = ({ token }: { token: string }) => {
               <p className="text-[11px] font-semibold leading-3">
                 {time.place}
               </p>
-            </div>
+            </button>
           )),
         )}
+        {table !== undefined ? (
+          <>
+            <LectureListModal
+              setLecture={setSelectedLecture}
+              list={table.lecture_list}
+              display={listModal}
+              title={table.title}
+              close={() => {
+                setListModal(false);
+              }}
+            />
+            <LectureModal
+              tableId={table._id}
+              lecture={selectedLecture}
+              token={token}
+              close={() => {
+                setSelectedLecture(undefined);
+              }}
+              deleteLecture={deleteLecture}
+            />
+          </>
+        ) : null}
       </div>
     </>
   );
