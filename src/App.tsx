@@ -5,13 +5,13 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Home from './components/Home';
 import LectureDetail from './components/LectureDetail/LectureDetail';
+import NewLectureModal from './components/LectureDetail/NewlectureModal';
 import Login from './components/Login';
 import Account from './components/mypage/Account';
 import ChangeNickname from './components/mypage/ChangeNickname';
 import MyPage from './components/mypage/MyPage';
 import MyPageLayout from './components/MyPageLayout';
 import NavBar from './components/NavBar';
-import NewLectureModal from './components/NewlectureModal';
 import LectureList from './components/timeTable/LectureList';
 import Timetable from './components/timeTable/Timetable';
 import TimeTableLayout from './components/TimeTableLayout';
