@@ -23,7 +23,7 @@ export const App = () => {
     </>
   );
   return (
-    <div className="w-screen h-screen sm:w-[430px] sm:h-[932px] flex flex-col">
+    <div className="w-full h-full sm:w-[430px] sm:h-[932px] flex flex-col">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>

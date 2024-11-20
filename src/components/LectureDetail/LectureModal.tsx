@@ -48,8 +48,8 @@ const LectureModal = () => {
       });
 
       return (
-        <div>
-          <div className="flex flex-col bg-neutral-200 w-full h-full gap-3">
+        <div className="h-full overflow-y-auto">
+          <div className="flex flex-col bg-neutral-200 w-full h-full space-y-3">
             <div className="h-fit py-2 px-4 bg-white">
               <Link
                 to={`/timetable/${tableID}`}
@@ -98,7 +98,7 @@ const LectureModal = () => {
                 ...timeAndPlaceArr,
               ]}
             ></MenuGroup>
-            <button className="flex w-full bg-white text-[14px] text-red-500 justify-center items-center">
+            <button className="flex w-full h-10 p-2 bg-white text-sm text-red-500 justify-center items-center hover:bg-red-200 duration-200">
               삭제
             </button>
           </div>
