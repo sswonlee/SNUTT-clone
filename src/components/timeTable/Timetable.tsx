@@ -109,7 +109,7 @@ function Timetable() {
             {table.lecture_list.map((lecture) =>
               lecture.class_time_json.map((time, i) => (
                 <Link
-                  to={`/timetable/${table._id}/lecures/${lecture._id}`}
+                  to={`/timetable/${table._id}/lectures/${lecture._id}`}
                   key={i}
                   style={{
                     backgroundColor: color[lecture.colorIndex - 1],

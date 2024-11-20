@@ -3,13 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Bookmark from '../../assets/LectureList/Bookmark.svg';
+import Location from '../../assets/LectureList/Location.svg';
+import Time from '../../assets/LectureList/Time.svg';
 import type { Lecture } from '../../types';
-import Bookmark from '../assets/LectureList/Bookmark.svg';
-import Location from '../assets/LectureList/Location.svg';
-import Time from '../assets/LectureList/Time.svg';
 import { TableContext } from '../TimeTableLayout';
 
 const LectureList = () => {
+  console.log('hello');
   const days = ['월', '화', '수', '목', '금'];
   const lecturePlace = (lecture: Lecture) => {
     return Array.from(
