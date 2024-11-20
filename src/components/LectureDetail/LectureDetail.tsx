@@ -43,7 +43,7 @@ const LectureDetail = () => {
           ...timeAndPlaceArr,
           {
             title: '시간',
-            info: `${days.filter((e) => e === time.day.toString()).toString()}(${time.start_time}~${time.end_time})`,
+            info: `${days.filter((_, index) => index === time.day).toString()}(${time.start_time}~${time.end_time})`,
           },
           { title: '장소', info: time.place },
         ];
