@@ -28,6 +28,7 @@ const DeleteModal = ({
           if (res.ok) {
             setDeleteLecture(false);
             goTable();
+            window.location.reload();
           } else {
             window.alert('강의 삭제에 실패했습니다.');
             setDeleteLecture(false);
@@ -47,6 +48,7 @@ const DeleteModal = ({
         onClick={() => {
           setDeleteLecture(false);
           goTable();
+          window.location.reload();
         }}
       ></div>
       <div className="absolute flex flex-col p-[20px] justify-between w-[330px] h-[150px] rounded-[20px] bg-white">
@@ -58,6 +60,7 @@ const DeleteModal = ({
             onClick={() => {
               setDeleteLecture(false);
               goTable();
+              window.location.reload();
             }}
           >
             취소
