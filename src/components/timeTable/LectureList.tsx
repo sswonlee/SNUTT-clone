@@ -10,7 +10,6 @@ import type { Lecture } from '../../types';
 import { TableContext } from '../TimeTableLayout';
 
 const LectureList = () => {
-  console.log('hello');
   const days = ['월', '화', '수', '목', '금'];
   const lecturePlace = (lecture: Lecture) => {
     return Array.from(
