@@ -1,6 +1,6 @@
 import type React from 'react';
 
-export const LectureInfo = ({
+const LectureInfo = ({
   title,
   info,
 }: {
