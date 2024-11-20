@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import left from '../assets/Left.png';
+import type { Table } from '../types';
 
 const Login = () => {
   const [id, setId] = useState('');
@@ -49,7 +50,23 @@ const Login = () => {
               ';expires=' +
               date.toUTCString() +
               ';path=/';
-            nav('/');
+
+            fetch(
+              'https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/tables/recent',
+              {
+                method: 'GET',
+                headers: {
+                  'x-access-token': json.token,
+                },
+              },
+            )
+              .then((res) => res.json())
+              .then((data: Table) => {
+                nav(`/timetable/${data._id}`);
+              })
+              .catch((err: unknown) => {
+                window.alert(err);
+              });
           } else if (
             'errcode' in json &&
             json.errcode === 8196 &&

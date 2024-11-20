@@ -12,28 +12,32 @@ import MyPageLayout from './components/MyPageLayout';
 import NavBar from './components/NavBar';
 
 export const App = () => {
+  const MyPageComponent = () => (
+    <>
+      <MyPageLayout></MyPageLayout>
+      <NavBar></NavBar>
+    </>
+  );
   return (
     <div className="w-screen h-screen sm:w-[430px] sm:h-[932px] flex flex-col">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route
-            path="/mypage"
-            element={
-              <>
-                <MyPageLayout />
-                <NavBar></NavBar>
-              </>
-            }
-          >
-            <Route path="" element={<MyPage />} />
+          <Route path="/mypage" element={<MyPageComponent></MyPageComponent>}>
+            <Route index element={<MyPage />} />
             <Route path="account" element={<Account />}></Route>
             <Route
               path="account/change-nickname"
               element={<ChangeNickname />}
             />
           </Route>
+          <Route path="/timetable/:tableID">
+            <Route path="lectures">
+              <Route path=":lectureID"></Route>
+            </Route>
+          </Route>
+          <Route path="new"></Route>
         </Routes>
       </BrowserRouter>
     </div>
