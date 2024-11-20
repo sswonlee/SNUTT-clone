@@ -7,12 +7,14 @@ import List from '../../assets/TimeTable/List.svg';
 import Share from '../../assets/TimeTable/Share.svg';
 import type { Table } from '../../types';
 import useToken from '../../utils/useToken';
+import NavBar from '../NavBar';
 
 function Timetable() {
   const token = useToken();
   const navigate = useNavigate();
 
   const [table, setTable] = useState<Table>();
+  const [loading, setLoading] = useState<boolean>(true);
   const [credit, setCredit] = useState(0);
   const HOUR_NUMBER = 12;
   const color = [
@@ -54,6 +56,7 @@ function Timetable() {
         .then((res) => res.json())
         .then((data: Table) => {
           setTable(data);
+          setLoading(false);
           let cr = 0;
           data.lecture_list.map((item) => {
             cr += item.credit;
@@ -67,7 +70,13 @@ function Timetable() {
   }, [token]);
 
   if (token !== undefined && token !== '') {
-    if (table !== undefined) {
+    if (loading) {
+      return (
+        <div className="w-screen h-screen flex justify-center items-center text-zinc-500 animate-pulse">
+          <p>loading..</p>
+        </div>
+      );
+    } else if (table !== undefined) {
       return (
         <>
           <div className="flex h-10 w-full items-center justify-between px-4">
@@ -153,14 +162,11 @@ function Timetable() {
               )),
             )}
           </div>
+          <NavBar></NavBar>
         </>
       );
     } else {
-      return (
-        <div className="flex justify-center items-center font-black text-3xl text-red-500">
-          <p>시간표 정보를 불러오지 못했습니다.</p>
-        </div>
-      );
+      navigate('/timetable');
     }
   } else {
     navigate('/');

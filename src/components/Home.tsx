@@ -10,6 +10,7 @@ const Home = () => {
   const token = useToken();
   const nav = useNavigate();
   const [id, setId] = useState('');
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (token !== undefined) {
@@ -25,12 +26,21 @@ const Home = () => {
         .then((res) => res.json())
         .then((data: Table) => {
           setId(data._id);
+          setLoading(false);
         })
         .catch((err: unknown) => {
           window.alert(err);
         });
     }
-  }, [token]);
+  }, [id, token]);
+
+  if (loading) {
+    return (
+      <div className="w-screen h-screen flex justify-center items-center text-zinc-500 animate-pulse">
+        <p>loading..</p>
+      </div>
+    );
+  }
   if (token !== undefined && token !== '') {
     nav(`/timetable/${id}`);
   } else {

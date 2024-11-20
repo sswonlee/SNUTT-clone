@@ -10,6 +10,8 @@ import ChangeNickname from './components/mypage/ChangeNickname';
 import MyPage from './components/mypage/MyPage';
 import MyPageLayout from './components/MyPageLayout';
 import NavBar from './components/NavBar';
+import Timetable from './components/timeTable/Timetable';
+import TimeTableError from './components/timeTable/timeTableError';
 
 export const App = () => {
   const MyPageComponent = () => (
@@ -32,7 +34,11 @@ export const App = () => {
               element={<ChangeNickname />}
             />
           </Route>
-          <Route path="/timetable/:tableID">
+          <Route
+            path="/timetable"
+            element={<TimeTableError></TimeTableError>}
+          ></Route>
+          <Route path="/timetable/:tableID" element={<Timetable></Timetable>}>
             <Route path="lectures">
               <Route path=":lectureID"></Route>
             </Route>
