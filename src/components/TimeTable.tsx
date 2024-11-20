@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import Alarm from '../assets/TimeTable/Alarm.svg';
 import Drawer from '../assets/TimeTable/Drawer.svg';
@@ -93,7 +94,7 @@ const TimeTable = ({ token }: { token: string }) => {
             <div className="w-3"></div>
             <div className="text-[17px] font-bold">{table?.title}</div>
             <div className="w-2"></div>
-            <div className="text-xs font-normal text-gray">
+            <div className="text-xs font-normal text-zinc-500">
               ({`${credit}학점`})
             </div>
           </div>
@@ -114,13 +115,13 @@ const TimeTable = ({ token }: { token: string }) => {
           </div>
         </div>
         <div
-          className={`grid flex-grow grid-cols-[20px_repeat(5,1fr)] grid-rows-[32px_repeat(${12 * HOUR_NUMBER},1fr)]`}
+          className={`grid flex-grow grid-cols-[20px_repeat(5,1fr)] grid-rows-[32px_repeat(${12 * HOUR_NUMBER},1fr)] divide-x divide-y divide-zinc-300 border-b border-zinc-300`}
         >
-          <div className="border-b border-t border-solid border-gray"></div>
+          <div className="border-t border-zinc-300"></div>
           {Array.from(['월', '화', '수', '목', '금'], (day) => (
             <div
-              key={day}
-              className="flex justify-center items-center text-[12px] text-gray border-b border-t border-l border-solid border-gray"
+              key={day + 'day'}
+              className="flex justify-center items-center text-sm text-gray"
             >
               {day}
             </div>
@@ -128,7 +129,7 @@ const TimeTable = ({ token }: { token: string }) => {
           {Array.from(Array(HOUR_NUMBER), (_, i) => (
             <div
               key={i}
-              className="text-right pt-1 pr-1 text-[12px] text-gray col-start-1 col-end-2 border-b border-solid border-gray"
+              className="flex justify-center text-xs text-gray col-start-1 col-end-2"
               style={{
                 gridRowStart: 12 * i + 2,
                 gridRowEnd: 12 * i + 14,
@@ -141,7 +142,7 @@ const TimeTable = ({ token }: { token: string }) => {
             Array.from(Array(5), (_2, j) => (
               <div
                 key={i - j}
-                className="border-b border-l border-solid border-gray"
+                className=""
                 style={{
                   gridColumnStart: j + 2,
                   gridColumnEnd: j + 3,
@@ -153,12 +154,9 @@ const TimeTable = ({ token }: { token: string }) => {
           )}
           {table?.lecture_list.map((lecture) =>
             lecture.class_time_json.map((time, i) => (
-              <button
-                onClick={() => {
-                  setSelectedLecture(lecture);
-                }}
+              <Link
+                to={`/timetable/${table._id}/lecures/${lecture._id}`}
                 key={i}
-                className="flex flex-col px-[6px] box-border justify-center items-center text-white"
                 style={{
                   backgroundColor: color[lecture.colorIndex - 1],
                   gridColumnStart: time.day + 2,
@@ -167,14 +165,11 @@ const TimeTable = ({ token }: { token: string }) => {
                   gridRowEnd: (time.endMinute - 60 * 9) / 5 + 2,
                 }}
               >
-                <p className="text-[10px] leading-3 line-clamp-2 text-center">
-                  {lecture.course_title}
-                </p>
-                <div className="h-1"></div>
-                <p className="text-[11px] font-semibold leading-3">
-                  {time.place}
-                </p>
-              </button>
+                <div className="flex flex-col h-full box-border justify-center items-center text-xs leading-3 font-semibold text-white space-y-1">
+                  <p className="line-clamp-2">{lecture.course_title}</p>
+                  <p>{time.place}</p>
+                </div>
+              </Link>
             )),
           )}
         </div>
