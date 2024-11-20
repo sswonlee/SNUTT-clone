@@ -23,7 +23,9 @@ const NavBar = () => {
         }}
         className="w-[30px] h-[30px]"
       >
-        <img src={loc.pathname === '/' ? TimeTableSel : TimeTable} />
+        <img
+          src={loc.pathname.includes('/timetable') ? TimeTableSel : TimeTable}
+        />
       </button>
       <button className="w-[30px] h-[30px]">
         <img src={Search} />
