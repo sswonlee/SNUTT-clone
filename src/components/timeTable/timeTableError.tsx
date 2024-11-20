@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 function TimeTableError() {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col justify-center items-center w-screen h-screen font-black text-red-500">
+    <div className="flex flex-col justify-center items-center w-full h-full font-black text-red-500">
       <div className="w-fit space-y-3">
         <p>시간표 정보를 불러오지 못했습니다.</p>
         <button

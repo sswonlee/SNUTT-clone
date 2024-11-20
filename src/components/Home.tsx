@@ -36,7 +36,7 @@ const Home = () => {
 
   if (loading) {
     return (
-      <div className="w-screen h-screen flex justify-center items-center text-zinc-500 animate-pulse">
+      <div className="w-full h-full flex justify-center items-center text-zinc-500 animate-pulse">
         <p>loading..</p>
       </div>
     );

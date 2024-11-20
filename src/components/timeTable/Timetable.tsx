@@ -1,21 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Alarm from '../../assets/TimeTable/Alarm.svg';
 import Drawer from '../../assets/TimeTable/Drawer.svg';
 import List from '../../assets/TimeTable/List.svg';
 import Share from '../../assets/TimeTable/Share.svg';
-import type { Table } from '../../types';
 import useToken from '../../utils/useToken';
 import NavBar from '../NavBar';
+import { TableContext } from '../TimeTableLayout';
 
 function Timetable() {
   const token = useToken();
   const navigate = useNavigate();
 
-  const [table, setTable] = useState<Table>();
-  const [loading, setLoading] = useState<boolean>(true);
-  const [credit, setCredit] = useState(0);
   const HOUR_NUMBER = 12;
   const color = [
     '#E54459',
@@ -41,42 +38,10 @@ function Timetable() {
   //       setCredit(cr);
   //     }
   //   };
-
-  useEffect(() => {
-    if (token !== undefined) {
-      fetch(
-        'https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/tables/recent',
-        {
-          method: 'GET',
-          headers: {
-            'x-access-token': token,
-          },
-        },
-      )
-        .then((res) => res.json())
-        .then((data: Table) => {
-          setTable(data);
-          setLoading(false);
-          let cr = 0;
-          data.lecture_list.map((item) => {
-            cr += item.credit;
-          });
-          setCredit(cr);
-        })
-        .catch((err: unknown) => {
-          window.alert(err);
-        });
-    }
-  }, [token]);
+  const { table, cr: credit } = useContext(TableContext);
 
   if (token !== undefined && token !== '') {
-    if (loading) {
-      return (
-        <div className="w-screen h-screen flex justify-center items-center text-zinc-500 animate-pulse">
-          <p>loading..</p>
-        </div>
-      );
-    } else if (table !== undefined) {
+    if (table !== null) {
       return (
         <>
           <div className="flex h-10 w-full items-center justify-between px-4">

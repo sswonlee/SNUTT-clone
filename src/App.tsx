@@ -10,8 +10,9 @@ import ChangeNickname from './components/mypage/ChangeNickname';
 import MyPage from './components/mypage/MyPage';
 import MyPageLayout from './components/MyPageLayout';
 import NavBar from './components/NavBar';
+import LectureList from './components/timeTable/LectureList';
 import Timetable from './components/timeTable/Timetable';
-import TimeTableError from './components/timeTable/timeTableError';
+import TimeTableLayout from './components/TimeTableLayout';
 
 export const App = () => {
   const MyPageComponent = () => (
@@ -36,14 +37,15 @@ export const App = () => {
           </Route>
           <Route
             path="/timetable"
-            element={<TimeTableError></TimeTableError>}
-          ></Route>
-          <Route path="/timetable/:tableID" element={<Timetable></Timetable>}>
-            <Route path="lectures">
-              <Route path=":lectureID"></Route>
+            element={<TimeTableLayout></TimeTableLayout>}
+          >
+            <Route path=":tableID" element={<Timetable></Timetable>}>
+              <Route path="lectures" element={<LectureList></LectureList>}>
+                <Route path=":lectureID"></Route>
+              </Route>
             </Route>
+            <Route path="new"></Route>
           </Route>
-          <Route path="new"></Route>
         </Routes>
       </BrowserRouter>
     </div>
