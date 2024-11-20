@@ -11,6 +11,7 @@ import ChangeNickname from './components/mypage/ChangeNickname';
 import MyPage from './components/mypage/MyPage';
 import MyPageLayout from './components/MyPageLayout';
 import NavBar from './components/NavBar';
+import NewLectureModal from './components/NewlectureModal';
 import LectureList from './components/timeTable/LectureList';
 import Timetable from './components/timeTable/Timetable';
 import TimeTableLayout from './components/TimeTableLayout';
@@ -49,7 +50,10 @@ export const App = () => {
               path=":tableID/lectures/:lectureID"
               element={<LectureDetail></LectureDetail>}
             ></Route>
-            <Route path="new"></Route>
+            <Route
+              path="new"
+              element={<NewLectureModal></NewLectureModal>}
+            ></Route>
           </Route>
         </Routes>
       </BrowserRouter>
