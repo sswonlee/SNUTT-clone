@@ -4,7 +4,7 @@ import 'pretendard/dist/web/static/pretendard.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Home from './components/Home';
-import LectureModal from './components/LectureDetail/LectureModal';
+import LectureDetail from './components/LectureDetail/LectureDetail';
 import Login from './components/Login';
 import Account from './components/mypage/Account';
 import ChangeNickname from './components/mypage/ChangeNickname';
@@ -47,7 +47,7 @@ export const App = () => {
             ></Route>
             <Route
               path=":tableID/lectures/:lectureID"
-              element={<LectureModal></LectureModal>}
+              element={<LectureDetail></LectureDetail>}
             ></Route>
             <Route path="new"></Route>
           </Route>

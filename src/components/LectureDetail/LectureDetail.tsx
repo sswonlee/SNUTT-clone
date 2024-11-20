@@ -1,16 +1,18 @@
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import type { Lecture } from '../../types';
 import useToken from '../../utils/useToken';
 import { TableContext } from '../TimeTableLayout';
+import DeleteModal from './DeleteModal';
 import { MenuGroup } from './LectureInfo';
 
-const LectureModal = () => {
+const LectureDetail = () => {
   const { lectureID, tableID } = useParams();
   const { table } = useContext(TableContext);
+  const [deleteLecture, setDeleteLecture] = useState<boolean>(false);
   const token = useToken();
   if (table !== null && token !== undefined) {
     const { lecture_list }: { lecture_list: Lecture[] } = table;
@@ -49,6 +51,11 @@ const LectureModal = () => {
 
       return (
         <div className="h-full overflow-y-auto">
+          {deleteLecture ? (
+            <DeleteModal setDeleteLecture={setDeleteLecture}></DeleteModal>
+          ) : (
+            <></>
+          )}
           <div className="flex flex-col bg-neutral-200 w-full h-full">
             <div className="h-fit py-2 px-4 bg-white">
               <Link
@@ -99,7 +106,12 @@ const LectureModal = () => {
                   ...timeAndPlaceArr,
                 ]}
               ></MenuGroup>
-              <button className="flex w-full h-10 p-2 bg-white text-sm text-red-500 justify-center items-center hover:bg-red-200 duration-200">
+              <button
+                className="flex w-full h-10 p-2 bg-white text-sm text-red-500 justify-center items-center hover:bg-red-200 duration-200"
+                onClick={() => {
+                  setDeleteLecture(true);
+                }}
+              >
                 삭제
               </button>
             </div>
@@ -110,4 +122,4 @@ const LectureModal = () => {
   }
 };
 
-export default LectureModal;
+export default LectureDetail;

@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 import { type Table } from '../types';
 import useToken from '../utils/useToken';
@@ -15,6 +15,7 @@ function TimeTableLayout() {
   const [loading, setLoading] = useState<boolean>(true);
   const [cr, setCr] = useState<number>(0);
   const token = useToken();
+  const location = useLocation();
   useEffect(() => {
     if (token !== undefined) {
       fetch(
@@ -52,6 +53,12 @@ function TimeTableLayout() {
       </>
     );
   } else {
+    if (
+      location.pathname === '/timetable/' ||
+      location.pathname === '/timetable'
+    ) {
+      setTable(undefined);
+    }
     return (
       <>
         <TableContext.Provider value={{ table, cr }}>
